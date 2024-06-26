@@ -17,7 +17,7 @@ class AuthMethods {
   }
 
   // Default image URL
-  final String defaultImageUrl = 'https://i.stack.imgur.com/l60Hf.png';
+  final String defaultprofileUrl = 'https://i.stack.imgur.com/l60Hf.png';
 
   //SIGNUP
   Future<String> signUpUser({
@@ -29,7 +29,7 @@ class AuthMethods {
     Uint8List? file,
   }) async {
     String res = "Some error occurred";
-    String imageUrl;
+    String profileUrl;
     try {
       if (email.isNotEmpty &&
           username.isNotEmpty &&
@@ -45,9 +45,9 @@ class AuthMethods {
             email: email, password: password);
 
         if (file == null) {
-          imageUrl = defaultImageUrl;
+          profileUrl = defaultprofileUrl;
         } else {
-          imageUrl =
+          profileUrl =
               await StorageMethods().uploadImages('profilePics', false, file);
         }
 
@@ -56,7 +56,7 @@ class AuthMethods {
           username: username,
           email: email,
           bio: bio,
-          imageUrl: imageUrl,
+          profileUrl: profileUrl,
           followers: [],
           following: [],
         );

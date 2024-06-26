@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/screens/home_screen.dart';
+import 'package:instagram_clone/screens/explorer_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 
 class MobileScreenLayout extends StatefulWidget {
@@ -42,7 +43,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: [
           const HomeScreen(),
           Center(child: Text('Search')),
-          Center(child: Text('add')),
+          const ExplorerScreen(),
           Center(child: Text('reels')),
           Center(child: Text('Profile')),
         ],
@@ -73,7 +74,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.add_circle,
+                Icons.add_box_outlined,
                 color: (_page == 2) ? blackColor : secondaryColor,
               ),
               label: '',

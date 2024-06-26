@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/widgets/post_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,8 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     width: 20.0,
                   ),
-                  const Icon(
-                    Icons.favorite_border_outlined,
+                  Image.asset(
+                    'assets/Icons/messenger.png',
+                    color: blackColor,
+                    height: 24.0,
+                    width: 24.0,
                   ),
                   const SizedBox(
                     width: 15.0,
@@ -53,6 +58,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ],
+          ),
+          body: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+            builder: (context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) => PostCard(
+                  snap: snapshot.data!.docs[index].data(),
+                ),
+              );
+            },
           ),
         ),
       ),

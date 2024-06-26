@@ -7,3 +7,5 @@ const secondaryColor = Colors.grey;
 var loginTextColor = Colors.grey[700];
 var profileBgColor = Colors.grey[300];
 const blackColor = Colors.black;
+const borderColor = Color.fromARGB(255, 87, 84, 84);
+const likeColor = Colors.red;
